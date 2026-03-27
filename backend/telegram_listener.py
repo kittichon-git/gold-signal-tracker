@@ -6,6 +6,7 @@ import os
 from datetime import datetime, timezone
 from telethon import TelegramClient, events
 from telethon.errors import FloodWaitError, SessionPasswordNeededError
+from telethon.sessions import StringSession
 from config import (TELEGRAM_API_ID, TELEGRAM_API_HASH,
                     TELEGRAM_CHANNELS, TELEGRAM_SESSION)
 import database as db
@@ -118,7 +119,9 @@ async def start_listener():
     retry_delay = 5
     while _running:
         try:
-            _client = TelegramClient(TELEGRAM_SESSION, TELEGRAM_API_ID, TELEGRAM_API_HASH)
+            string_session = os.getenv("TELEGRAM_STRING_SESSION", "")
+            session = StringSession(string_session) if string_session else TELEGRAM_SESSION
+            _client = TelegramClient(session, TELEGRAM_API_ID, TELEGRAM_API_HASH)
             await _client.start()
             logger.info("✅ Telegram connected")
             retry_delay = 5  # reset backoff

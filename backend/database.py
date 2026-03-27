@@ -151,12 +151,19 @@ def get_price_candles(from_ts: str, to_ts: str, interval: str = "1h"):
     if not rows:
         return []
 
-    fmt_map = {"1m": 16, "5m": 15, "1h": 13, "1d": 10}
-    cut = fmt_map.get(interval, 13)
+    # truncate timestamp to interval boundary → valid ISO string for JS Date()
+    def _bucket_key(ts: str) -> str:
+        s = str(ts)[:19]  # "2026-03-27 16:25:23"
+        if interval == "1d":  return s[:10]              # "2026-03-27"
+        if interval == "1h":  return s[:13] + ":00:00"   # "2026-03-27 16:00:00"
+        if interval == "5m":
+            m = (int(s[14:16]) // 5) * 5
+            return s[:13] + f":{m:02d}:00"              # "2026-03-27 16:25:00"
+        return s[:16] + ":00"                            # 1m → "2026-03-27 16:25:00"
 
     buckets: dict[str, dict] = {}
     for r in rows:
-        ts_key = str(r["timestamp"])[:cut]
+        ts_key = _bucket_key(r["timestamp"])
         if ts_key not in buckets:
             buckets[ts_key] = {"time": ts_key, "open": r["open"],
                                 "high": r["high"], "low": r["low"],

@@ -7,3 +7,4 @@ supabase
 telethon
 pandas
 requests
+slowapi

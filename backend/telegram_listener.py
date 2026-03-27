@@ -117,10 +117,16 @@ async def start_listener():
     _restore_session()
 
     retry_delay = 5
+    string_session = os.getenv("TELEGRAM_STRING_SESSION", "")
+    if string_session:
+        session = StringSession(string_session)
+        logger.info("Using StringSession from env var")
+    else:
+        _restore_session()
+        session = TELEGRAM_SESSION
+
     while _running:
         try:
-            string_session = os.getenv("TELEGRAM_STRING_SESSION", "")
-            session = StringSession(string_session) if string_session else TELEGRAM_SESSION
             _client = TelegramClient(session, TELEGRAM_API_ID, TELEGRAM_API_HASH)
             await _client.start()
             logger.info("✅ Telegram connected")

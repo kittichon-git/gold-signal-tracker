@@ -1,6 +1,8 @@
-"""telegram_listener.py — รับ message จาก Telegram channels ด้วย Telethon"""
+"""telegram_listener.py — Receive messages from Telegram channels via Telethon"""
 import asyncio
+import base64
 import logging
+import os
 from datetime import datetime, timezone
 from telethon import TelegramClient, events
 from telethon.errors import FloodWaitError, SessionPasswordNeededError
@@ -12,7 +14,23 @@ from signal_parser import parse_signal, calc_rr
 logger = logging.getLogger(__name__)
 
 _client: TelegramClient | None = None
-_last_message_ids: dict[str, int] = {}  # channel → last message id
+_last_message_ids: dict[str, int] = {}
+
+
+def _restore_session():
+    """Decode TELEGRAM_SESSION_B64 env var and write session file (for cloud deploys)."""
+    b64 = os.getenv("TELEGRAM_SESSION_B64", "")
+    if not b64:
+        return
+    session_file = f"{TELEGRAM_SESSION}.session"
+    if os.path.exists(session_file):
+        return  # already exists locally
+    try:
+        with open(session_file, "wb") as f:
+            f.write(base64.b64decode(b64))
+        logger.info("Session restored from TELEGRAM_SESSION_B64")
+    except Exception as e:
+        logger.error(f"Failed to restore session: {e}")
 _running = False
 
 
@@ -90,6 +108,7 @@ async def _recover_missed_messages(client: TelegramClient):
 async def start_listener():
     global _client, _running
     _running = True
+    _restore_session()
 
     retry_delay = 5
     while _running:

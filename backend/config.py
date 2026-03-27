@@ -24,7 +24,7 @@ SUPABASE_URL  = os.getenv("SUPABASE_URL", "")
 SUPABASE_KEY  = os.getenv("SUPABASE_KEY", "")
 
 # -- App -----------------------------------------------------------------------
-BACKEND_PORT    = int(os.getenv("BACKEND_PORT", "8000"))
+BACKEND_PORT    = int(os.getenv("PORT", os.getenv("BACKEND_PORT", "8000")))
 API_SECRET_KEY  = os.getenv("API_SECRET_KEY", "change-this-secret-key")
 FRONTEND_URL    = os.getenv("FRONTEND_URL", "http://localhost:5173")
 

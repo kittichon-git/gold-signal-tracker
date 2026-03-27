@@ -50,6 +50,18 @@ def get_channels():
 
 # ── Signal CRUD ───────────────────────────────────────────────────────────────
 
+def signal_exists(channel_name: str, action: str, entry_price: float, signal_time: str) -> bool:
+    """Check duplicate before insert"""
+    res = get_client().table("gold_signals") \
+        .select("id") \
+        .eq("channel_name", channel_name) \
+        .eq("action", action) \
+        .eq("entry_price", entry_price) \
+        .eq("signal_time", signal_time) \
+        .limit(1).execute()
+    return bool(res.data)
+
+
 def insert_signal(data: dict) -> int:
     payload = {
         "channel_id":        data.get("channel_id"),

@@ -59,6 +59,11 @@ async def _process_message(channel_name: str, channel_tg_id: str,
 
     rr = calc_rr(action, entry, tp1, sl) if all([action, entry, tp1, sl]) else None
 
+    # skip duplicate signals
+    if db.signal_exists(channel_name, action, entry, message_time):
+        logger.debug(f"Duplicate signal skipped [{channel_name}] {action} @ {entry}")
+        return
+
     signal_id = db.insert_signal({
         "channel_id":        channel_id,
         "channel_name":      channel_name,

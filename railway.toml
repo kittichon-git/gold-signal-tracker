@@ -1,0 +1,16 @@
+# railway.toml — Deploy backend บน Railway.app (ฟรี $5 credit/เดือน)
+# https://railway.app → New Project → Deploy from GitHub
+
+[build]
+builder = "nixpacks"
+buildCommand = "cd backend && pip install -r requirements.txt"
+
+[deploy]
+startCommand = "cd backend && python main.py"
+healthcheckPath = "/health"
+healthcheckTimeout = 30
+restartPolicyType = "on-failure"
+restartPolicyMaxRetries = 3
+
+[environments.production.variables]
+BACKEND_PORT = "8000"

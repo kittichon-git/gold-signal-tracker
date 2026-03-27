@@ -1,0 +1,32 @@
+# render.yaml — Deploy backend ฟรีบน Render.com
+# https://render.com → New → Web Service → Connect GitHub repo
+
+services:
+  - type: web
+    name: gold-signal-backend
+    runtime: python
+    region: singapore          # ใกล้ไทยที่สุด
+    plan: free                 # free tier (spin down หลัง 15 นาที idle)
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: python main.py
+    healthCheckPath: /health
+    envVars:
+      - key: TELEGRAM_API_ID
+        sync: false            # ใส่ค่าใน Render dashboard
+      - key: TELEGRAM_API_HASH
+        sync: false
+      - key: TELEGRAM_CHANNELS
+        sync: false
+      - key: CLAUDE_API_KEY
+        sync: false
+      - key: API_SECRET_KEY
+        sync: false
+      - key: TWELVE_DATA_KEY
+        sync: false
+      - key: FRONTEND_URL
+        sync: false            # ใส่ GitHub Pages URL
+      - key: BACKEND_PORT
+        value: "8000"
+      - key: DB_PATH
+        value: /opt/render/project/src/gold_signals.db

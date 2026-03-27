@@ -1,0 +1,5 @@
+2026-03-27 23:22:38 ERROR    database         ❌ Supabase error: Invalid API key
+2026-03-27 23:22:38 ERROR    database         รันไฟล์ migrations/001_create_tables.sql ใน Supabase SQL Editor ก่อน
+2026-03-27 23:25:17 INFO     database         ✅ Supabase connected
+2026-03-27 23:25:18 INFO     httpx            HTTP Request: GET https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_channels?select=id&limit=1 "HTTP/2 200 OK"
+2026-03-27 23:25:18 INFO     database         ✅ Supabase tables verified

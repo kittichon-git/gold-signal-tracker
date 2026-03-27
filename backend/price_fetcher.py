@@ -8,7 +8,7 @@ import database as db
 
 logger = logging.getLogger(__name__)
 
-SYMBOL_YFINANCE     = "XAUUSD=X"   # Gold spot price (yfinance)
+SYMBOL_YFINANCE     = "GC=F"       # Gold Futures (yfinance fallback)
 SYMBOL_TWELVEDATA   = "XAU/USD"    # Twelve Data
 SYMBOL_ALPHAVANTAGE = "XAUUSD"     # Alpha Vantage (Forex)
 
@@ -55,44 +55,47 @@ async def fetch_alphavantage(session: aiohttp.ClientSession) -> dict | None:
 
 
 async def fetch_yfinance() -> dict | None:
-    """Fallback — ใช้ yfinance (delay ~15min แต่ฟรีไม่จำกัด)"""
-    try:
-        import yfinance as yf
-        ticker = yf.Ticker(SYMBOL_YFINANCE)
-        hist   = ticker.history(period="1d", interval="1m").tail(1)
-        if not hist.empty:
-            row = hist.iloc[-1]
-            ts  = hist.index[-1].strftime("%Y-%m-%d %H:%M:%S")
-            return {"timestamp": ts, "open": float(row["Open"]),
-                    "high": float(row["High"]), "low": float(row["Low"]),
-                    "close": float(row["Close"]), "volume": float(row["Volume"]),
-                    "source": "yfinance"}
-    except Exception as e:
-        logger.debug(f"yfinance error: {e}")
+    """Fallback — try multiple symbols"""
+    import yfinance as yf
+    for symbol in ("GC=F", "XAUUSD=X", "GLD"):
+        try:
+            hist = yf.Ticker(symbol).history(period="1d", interval="1m").tail(1)
+            if not hist.empty:
+                row = hist.iloc[-1]
+                ts  = hist.index[-1].strftime("%Y-%m-%d %H:%M:%S")
+                return {"timestamp": ts, "open": float(row["Open"]),
+                        "high": float(row["High"]), "low": float(row["Low"]),
+                        "close": float(row["Close"]), "volume": float(row["Volume"]),
+                        "source": f"yfinance_{symbol}"}
+        except Exception as e:
+            logger.debug(f"yfinance {symbol} error: {e}")
     return None
 
 
 async def fetch_candles_yfinance(period: str = "7d", interval: str = "1h") -> list[dict]:
-    """โหลด historical candles ตอน startup"""
-    try:
-        import yfinance as yf
-        ticker = yf.Ticker(SYMBOL_YFINANCE)
-        hist   = ticker.history(period=period, interval=interval)
-        rows   = []
-        for ts, row in hist.iterrows():
-            rows.append({
-                "timestamp": ts.strftime("%Y-%m-%d %H:%M:%S"),
-                "open":   float(row["Open"]),
-                "high":   float(row["High"]),
-                "low":    float(row["Low"]),
-                "close":  float(row["Close"]),
-                "volume": float(row["Volume"]),
-                "source": "yfinance_hist"
-            })
-        return rows
-    except Exception as e:
-        logger.warning(f"fetch_candles_yfinance error: {e}")
-        return []
+    """Load historical candles on startup — try multiple symbols"""
+    import yfinance as yf
+    for symbol in ("GC=F", "XAUUSD=X", "GLD"):
+        try:
+            hist = yf.Ticker(symbol).history(period=period, interval=interval)
+            if hist.empty:
+                continue
+            rows = []
+            for ts, row in hist.iterrows():
+                rows.append({
+                    "timestamp": ts.strftime("%Y-%m-%d %H:%M:%S"),
+                    "open":   float(row["Open"]),
+                    "high":   float(row["High"]),
+                    "low":    float(row["Low"]),
+                    "close":  float(row["Close"]),
+                    "volume": float(row["Volume"]),
+                    "source": f"yfinance_{symbol}"
+                })
+            if rows:
+                return rows
+        except Exception as e:
+            logger.debug(f"yfinance {symbol} candles error: {e}")
+    return []
 
 
 async def price_loop():

@@ -1,6 +1,12 @@
 import { useState, useEffect } from 'react'
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
+const CHANNEL_NAMES = {
+  'Channel trades': 'EMpire',
+  'trades': 'EMpire',
+}
+const displayChannel = (name) => CHANNEL_NAMES[name] || name
+
 const STATUS_LABEL = {
   tp1_hit: 'TP1 Hit', tp2_hit: 'TP2 Hit', sl_hit: 'SL Hit',
   open: 'Open', pending: 'Pending', missed: 'Missed', cancelled: 'Cancelled',
@@ -48,7 +54,7 @@ function RecentSignalRow({ s, isMobile }) {
     <tr>
       <td><span className={s.action === 'buy' ? 'buy' : 'sell'}>{s.action?.toUpperCase()}</span></td>
       <td>{s.entry_price?.toLocaleString('en', { minimumFractionDigits: 2 })}</td>
-      {!isMobile && <td style={{ color: 'var(--muted)', fontSize: 12 }}>{s.channel_name || '—'}</td>}
+      {!isMobile && <td style={{ color: 'var(--muted)', fontSize: 12 }}>{displayChannel(s.channel_name) || '—'}</td>}
       <td>
         <span className={`badge ${STATUS_CLASS[s.order_status] || 'badge-pending'}`}>
           {STATUS_LABEL[s.order_status] || s.order_status}
@@ -215,7 +221,7 @@ export default function Dashboard({ apiFetch, onNavigate }) {
                     <div key={c.channel_name} className="channel-row">
                       <div className="channel-row__rank">#{i + 1}</div>
                       <div className="channel-row__info">
-                        <div className="channel-row__name">{c.channel_name}</div>
+                        <div className="channel-row__name">{displayChannel(c.channel_name)}</div>
                         <div className="channel-row__meta">
                           <span>{c.total} signals</span>
                           <span className={c.win_rate >= 50 ? 'profit-pos' : 'profit-neg'}>

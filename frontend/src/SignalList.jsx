@@ -1,5 +1,19 @@
 import { useState, useEffect, useCallback } from 'react'
 
+const CHANNEL_NAMES = {
+  'Channel trades': 'EMpire',
+}
+const displayChannel = (name) => CHANNEL_NAMES[name] || name
+
+const toThaiTime = (iso) => {
+  if (!iso) return '—'
+  return new Date(iso).toLocaleString('th-TH', {
+    timeZone: 'Asia/Bangkok',
+    year: 'numeric', month: '2-digit', day: '2-digit',
+    hour: '2-digit', minute: '2-digit',
+  })
+}
+
 const BADGE = {
   tp1_hit: ['badge badge-tp1', 'TP1 Hit'],
   tp2_hit: ['badge badge-tp2', 'TP2 Hit'],
@@ -110,9 +124,9 @@ export default function SignalList({ apiFetch }) {
                     <tr key={s.id} title={s.raw_message || ''}>
                       <td style={{ color: 'var(--muted)' }}>{s.id}</td>
                       <td style={{ color: 'var(--muted)', whiteSpace: 'nowrap' }}>
-                        {s.signal_time?.slice(0, 16)}
+                        {toThaiTime(s.signal_time)}
                       </td>
-                      <td>{s.channel_name}</td>
+                      <td>{displayChannel(s.channel_name)}</td>
                       <td className={s.action}>{s.action?.toUpperCase()}</td>
                       <td><b>{s.entry_price}</b></td>
                       <td style={{ color: 'var(--green)' }}>{s.tp1 ?? '—'}</td>

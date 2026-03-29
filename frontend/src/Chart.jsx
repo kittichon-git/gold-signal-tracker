@@ -83,7 +83,7 @@ export default function Chart({ apiFetch }) {
       const candles = (prices || []).map(p => ({
         time:  Math.floor(new Date(p.time).getTime() / 1000),
         open:  p.open, high: p.high, low: p.low, close: p.close,
-      })).filter(c => c.time)
+      })).filter(c => c.time && c.close > 1000)
       candleRef.current.setData(candles)
 
       // ── Clear old price lines ─────────────────────────────────

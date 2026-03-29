@@ -57,7 +57,7 @@ async def fetch_alphavantage(session: aiohttp.ClientSession) -> dict | None:
 async def fetch_yfinance() -> dict | None:
     """Fallback — try multiple symbols"""
     import yfinance as yf
-    for symbol in ("GC=F", "XAUUSD=X", "GLD"):
+    for symbol in ("GC=F", "XAUUSD=X"):
         try:
             hist = yf.Ticker(symbol).history(period="1d", interval="1m").tail(1)
             if not hist.empty:
@@ -75,7 +75,7 @@ async def fetch_yfinance() -> dict | None:
 async def fetch_candles_yfinance(period: str = "7d", interval: str = "1h") -> list[dict]:
     """Load historical candles on startup — try multiple symbols"""
     import yfinance as yf
-    for symbol in ("GC=F", "XAUUSD=X", "GLD"):
+    for symbol in ("GC=F", "XAUUSD=X"):
         try:
             hist = yf.Ticker(symbol).history(period=period, interval=interval)
             if hist.empty:

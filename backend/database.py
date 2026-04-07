@@ -54,7 +54,6 @@ def signal_exists(channel_name: str, action: str, entry_price: float, signal_tim
     """Check duplicate before insert"""
     res = get_client().table("gold_signals") \
         .select("id") \
-        .eq("channel_name", channel_name) \
         .eq("action", action) \
         .eq("entry_price", entry_price) \
         .eq("signal_time", signal_time) \

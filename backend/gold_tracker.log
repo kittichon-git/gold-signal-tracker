@@ -508,3 +508,110 @@ ConnectionResetError: [WinError 10054] An existing connection was forcibly close
 2026-03-28 00:49:06 INFO     httpx            HTTP Request: GET https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_prices?select=%2A&timestamp=gte.2026-03-27T12%3A18%3A51%2B00%3A00&timestamp=lte.2026-03-27%2017%3A49%3A06&order=timestamp.asc "HTTP/2 200 OK"
 2026-03-28 00:49:06 INFO     httpx            HTTP Request: GET https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_prices?select=%2A&timestamp=gte.2026-03-27T12%3A18%3A51%2B00%3A00&timestamp=lte.2026-03-27%2017%3A49%3A06&order=timestamp.asc "HTTP/2 200 OK"
 2026-03-28 00:49:06 INFO     httpx            HTTP Request: POST https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_prices?on_conflict=timestamp&columns=%22open%22%2C%22low%22%2C%22high%22%2C%22timestamp%22%2C%22source%22%2C%22volume%22%2C%22close%22 "HTTP/2 201 Created"
+2026-04-07 19:18:04 INFO     database         ✅ Supabase connected
+2026-04-07 19:18:05 INFO     httpx            HTTP Request: GET https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_channels?select=id&limit=1 "HTTP/2 200 OK"
+2026-04-07 19:18:05 INFO     database         ✅ Supabase tables verified
+2026-04-07 19:18:05 INFO     main             🚀 Gold Signal Tracker started — http://localhost:8000
+2026-04-07 19:18:05 INFO     main                API Docs: http://localhost:8000/docs
+2026-04-07 19:18:05 INFO     price_fetcher    Price fetcher started (interval=60s)
+2026-04-07 19:18:05 INFO     price_fetcher    Loading historical price data (7d / 1h)...
+2026-04-07 19:18:07 INFO     httpx            HTTP Request: POST https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_prices?on_conflict=timestamp&columns=%22timestamp%22%2C%22volume%22%2C%22close%22%2C%22open%22%2C%22high%22%2C%22low%22%2C%22source%22 "HTTP/2 201 Created"
+2026-04-07 19:18:07 INFO     price_fetcher      → 124 historical candles loaded
+2026-04-07 19:18:07 INFO     signal_analyzer  Signal analyzer started (interval=60s)
+2026-04-07 19:18:07 INFO     httpx            HTTP Request: GET https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_signals?select=%2A&order_status=in.%28pending%2Copen%29&order=signal_time.asc "HTTP/2 200 OK"
+2026-04-07 19:18:07 INFO     httpx            HTTP Request: GET https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_prices?select=%2A&timestamp=gte.2026-04-06T13%3A22%3A20%2B00%3A00&timestamp=lte.2026-04-07%2012%3A18%3A07&order=timestamp.asc "HTTP/2 200 OK"
+2026-04-07 19:18:07 INFO     httpx            HTTP Request: PATCH https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_signals?id=eq.13 "HTTP/2 200 OK"
+2026-04-07 19:18:07 INFO     signal_analyzer  Signal #13 [-1001680297592] BUY 4663 → tp1_hit (+29.00 pts)
+2026-04-07 19:18:07 INFO     httpx            HTTP Request: GET https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_prices?select=%2A&timestamp=gte.2026-04-06T13%3A22%3A20%2B00%3A00&timestamp=lte.2026-04-07%2012%3A18%3A07&order=timestamp.asc "HTTP/2 200 OK"
+2026-04-07 19:18:07 INFO     httpx            HTTP Request: PATCH https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_signals?id=eq.16 "HTTP/2 200 OK"
+2026-04-07 19:18:07 INFO     signal_analyzer  Signal #16 [trades] BUY 4663 → tp1_hit (+29.00 pts)
+2026-04-07 19:18:07 INFO     httpx            HTTP Request: GET https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_prices?select=%2A&timestamp=gte.2026-04-06T15%3A14%3A49%2B00%3A00&timestamp=lte.2026-04-07%2012%3A18%3A07&order=timestamp.asc "HTTP/2 200 OK"
+2026-04-07 19:18:08 INFO     httpx            HTTP Request: PATCH https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_signals?id=eq.14 "HTTP/2 200 OK"
+2026-04-07 19:18:08 INFO     signal_analyzer  Signal #14 [-1001680297592] BUY 4662 → tp1_hit (+28.00 pts)
+2026-04-07 19:18:08 INFO     httpx            HTTP Request: GET https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_prices?select=%2A&timestamp=gte.2026-04-06T15%3A14%3A49%2B00%3A00&timestamp=lte.2026-04-07%2012%3A18%3A08&order=timestamp.asc "HTTP/2 200 OK"
+2026-04-07 19:18:08 INFO     httpx            HTTP Request: PATCH https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_signals?id=eq.15 "HTTP/2 200 OK"
+2026-04-07 19:18:08 INFO     signal_analyzer  Signal #15 [trades] BUY 4662 → tp1_hit (+28.00 pts)
+2026-04-07 19:18:08 INFO     httpx            HTTP Request: GET https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_prices?select=%2A&timestamp=gte.2026-04-07T10%3A48%3A47%2B00%3A00&timestamp=lte.2026-04-07%2012%3A18%3A08&order=timestamp.asc "HTTP/2 200 OK"
+2026-04-07 19:18:08 INFO     telethon.network.mtprotosender Connecting to 91.108.56.174:443/TcpFull...
+2026-04-07 19:18:08 INFO     telethon.network.mtprotosender Connection to 91.108.56.174:443/TcpFull complete!
+2026-04-07 19:18:08 ERROR    telegram_listener Telegram error: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by InvokeWithLayerRequest(InitConnectionRequest(GetConfigRequest))) — retry in 5s
+2026-04-07 19:18:09 INFO     httpx            HTTP Request: POST https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_prices?on_conflict=timestamp&columns=%22timestamp%22%2C%22volume%22%2C%22close%22%2C%22open%22%2C%22high%22%2C%22low%22%2C%22source%22 "HTTP/2 201 Created"
+2026-04-07 19:18:13 INFO     telethon.network.mtprotosender Disconnecting from 91.108.56.174:443/TcpFull...
+2026-04-07 19:18:13 INFO     telethon.network.mtprotosender Disconnection from 91.108.56.174:443/TcpFull complete!
+2026-04-07 19:18:13 INFO     telethon.network.mtprotosender Connecting to 91.108.56.174:443/TcpFull...
+2026-04-07 19:18:13 INFO     telethon.network.mtprotosender Connection to 91.108.56.174:443/TcpFull complete!
+2026-04-07 19:18:13 ERROR    telegram_listener Telegram error: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by InvokeWithLayerRequest(InitConnectionRequest(GetConfigRequest))) — retry in 10s
+2026-04-07 19:18:23 INFO     telethon.network.mtprotosender Disconnecting from 91.108.56.174:443/TcpFull...
+2026-04-07 19:18:23 INFO     telethon.network.mtprotosender Disconnection from 91.108.56.174:443/TcpFull complete!
+2026-04-07 19:18:23 INFO     telethon.network.mtprotosender Connecting to 91.108.56.174:443/TcpFull...
+2026-04-07 19:18:23 INFO     telethon.network.mtprotosender Connection to 91.108.56.174:443/TcpFull complete!
+2026-04-07 19:18:23 ERROR    telegram_listener Telegram error: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by InvokeWithLayerRequest(InitConnectionRequest(GetConfigRequest))) — retry in 20s
+2026-04-07 19:18:43 INFO     telethon.network.mtprotosender Disconnecting from 91.108.56.174:443/TcpFull...
+2026-04-07 19:18:43 INFO     telethon.network.mtprotosender Disconnection from 91.108.56.174:443/TcpFull complete!
+2026-04-07 19:18:43 INFO     telethon.network.mtprotosender Connecting to 91.108.56.174:443/TcpFull...
+2026-04-07 19:18:43 INFO     telethon.network.mtprotosender Connection to 91.108.56.174:443/TcpFull complete!
+2026-04-07 19:18:43 ERROR    telegram_listener Telegram error: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by InvokeWithLayerRequest(InitConnectionRequest(GetConfigRequest))) — retry in 40s
+2026-04-07 19:19:08 INFO     httpx            HTTP Request: GET https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_signals?select=%2A&order_status=in.%28pending%2Copen%29&order=signal_time.asc "HTTP/2 200 OK"
+2026-04-07 19:19:09 INFO     httpx            HTTP Request: GET https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_prices?select=%2A&timestamp=gte.2026-04-07T10%3A48%3A47%2B00%3A00&timestamp=lte.2026-04-07%2012%3A19%3A08&order=timestamp.asc "HTTP/2 200 OK"
+2026-04-07 19:19:10 INFO     httpx            HTTP Request: POST https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_prices?on_conflict=timestamp&columns=%22timestamp%22%2C%22volume%22%2C%22close%22%2C%22open%22%2C%22high%22%2C%22low%22%2C%22source%22 "HTTP/2 201 Created"
+2026-04-07 19:19:24 INFO     telethon.network.mtprotosender Disconnecting from 91.108.56.174:443/TcpFull...
+2026-04-07 19:19:24 INFO     telethon.network.mtprotosender Disconnection from 91.108.56.174:443/TcpFull complete!
+2026-04-07 19:19:24 INFO     telethon.network.mtprotosender Connecting to 91.108.56.174:443/TcpFull...
+2026-04-07 19:19:24 INFO     telethon.network.mtprotosender Connection to 91.108.56.174:443/TcpFull complete!
+2026-04-07 19:19:24 ERROR    telegram_listener Telegram error: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by InvokeWithLayerRequest(InitConnectionRequest(GetConfigRequest))) — retry in 80s
+2026-04-07 19:20:09 INFO     httpx            HTTP Request: GET https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_signals?select=%2A&order_status=in.%28pending%2Copen%29&order=signal_time.asc "HTTP/2 200 OK"
+2026-04-07 19:20:09 INFO     httpx            HTTP Request: GET https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_prices?select=%2A&timestamp=gte.2026-04-07T10%3A48%3A47%2B00%3A00&timestamp=lte.2026-04-07%2012%3A20%3A09&order=timestamp.asc "HTTP/2 200 OK"
+2026-04-07 19:20:10 INFO     httpx            HTTP Request: POST https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_prices?on_conflict=timestamp&columns=%22timestamp%22%2C%22volume%22%2C%22close%22%2C%22open%22%2C%22high%22%2C%22low%22%2C%22source%22 "HTTP/2 201 Created"
+2026-04-07 19:20:44 INFO     telethon.network.mtprotosender Disconnecting from 91.108.56.174:443/TcpFull...
+2026-04-07 19:20:44 INFO     telethon.network.mtprotosender Disconnection from 91.108.56.174:443/TcpFull complete!
+2026-04-07 19:20:44 INFO     telethon.network.mtprotosender Connecting to 91.108.56.174:443/TcpFull...
+2026-04-07 19:20:44 INFO     telethon.network.mtprotosender Connection to 91.108.56.174:443/TcpFull complete!
+2026-04-07 19:20:44 ERROR    telegram_listener Telegram error: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by InvokeWithLayerRequest(InitConnectionRequest(GetConfigRequest))) — retry in 160s
+2026-04-07 19:21:09 INFO     httpx            HTTP Request: GET https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_signals?select=%2A&order_status=in.%28pending%2Copen%29&order=signal_time.asc "HTTP/2 200 OK"
+2026-04-07 19:21:09 INFO     httpx            HTTP Request: GET https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_prices?select=%2A&timestamp=gte.2026-04-07T10%3A48%3A47%2B00%3A00&timestamp=lte.2026-04-07%2012%3A21%3A09&order=timestamp.asc "HTTP/2 200 OK"
+2026-04-07 19:21:11 INFO     httpx            HTTP Request: POST https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_prices?on_conflict=timestamp&columns=%22timestamp%22%2C%22volume%22%2C%22close%22%2C%22open%22%2C%22high%22%2C%22low%22%2C%22source%22 "HTTP/2 201 Created"
+2026-04-07 19:22:10 INFO     httpx            HTTP Request: GET https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_signals?select=%2A&order_status=in.%28pending%2Copen%29&order=signal_time.asc "HTTP/2 200 OK"
+2026-04-07 19:22:10 INFO     httpx            HTTP Request: GET https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_prices?select=%2A&timestamp=gte.2026-04-07T10%3A48%3A47%2B00%3A00&timestamp=lte.2026-04-07%2012%3A22%3A10&order=timestamp.asc "HTTP/2 200 OK"
+2026-04-07 19:22:11 INFO     httpx            HTTP Request: POST https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_prices?on_conflict=timestamp&columns=%22timestamp%22%2C%22volume%22%2C%22close%22%2C%22open%22%2C%22high%22%2C%22low%22%2C%22source%22 "HTTP/2 201 Created"
+2026-04-07 19:23:11 INFO     httpx            HTTP Request: GET https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_signals?select=%2A&order_status=in.%28pending%2Copen%29&order=signal_time.asc "HTTP/2 200 OK"
+2026-04-07 19:23:11 INFO     httpx            HTTP Request: GET https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_prices?select=%2A&timestamp=gte.2026-04-07T10%3A48%3A47%2B00%3A00&timestamp=lte.2026-04-07%2012%3A23%3A11&order=timestamp.asc "HTTP/2 200 OK"
+2026-04-07 19:23:12 INFO     httpx            HTTP Request: POST https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_prices?on_conflict=timestamp&columns=%22timestamp%22%2C%22volume%22%2C%22close%22%2C%22open%22%2C%22high%22%2C%22low%22%2C%22source%22 "HTTP/2 201 Created"
+2026-04-07 19:23:24 INFO     telethon.network.mtprotosender Disconnecting from 91.108.56.174:443/TcpFull...
+2026-04-07 19:23:24 INFO     telethon.network.mtprotosender Disconnection from 91.108.56.174:443/TcpFull complete!
+2026-04-07 19:23:24 INFO     telethon.network.mtprotosender Connecting to 91.108.56.174:443/TcpFull...
+2026-04-07 19:23:24 INFO     telethon.network.mtprotosender Connection to 91.108.56.174:443/TcpFull complete!
+2026-04-07 19:23:24 ERROR    telegram_listener Telegram error: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by InvokeWithLayerRequest(InitConnectionRequest(GetConfigRequest))) — retry in 300s
+2026-04-07 19:24:12 INFO     httpx            HTTP Request: GET https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_signals?select=%2A&order_status=in.%28pending%2Copen%29&order=signal_time.asc "HTTP/2 200 OK"
+2026-04-07 19:24:12 INFO     httpx            HTTP Request: GET https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_prices?select=%2A&timestamp=gte.2026-04-07T10%3A48%3A47%2B00%3A00&timestamp=lte.2026-04-07%2012%3A24%3A12&order=timestamp.asc "HTTP/2 200 OK"
+2026-04-07 19:24:12 INFO     httpx            HTTP Request: POST https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_prices?on_conflict=timestamp&columns=%22timestamp%22%2C%22volume%22%2C%22close%22%2C%22open%22%2C%22high%22%2C%22low%22%2C%22source%22 "HTTP/2 201 Created"
+2026-04-07 19:25:12 INFO     httpx            HTTP Request: GET https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_signals?select=%2A&order_status=in.%28pending%2Copen%29&order=signal_time.asc "HTTP/2 200 OK"
+2026-04-07 19:25:12 INFO     httpx            HTTP Request: GET https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_prices?select=%2A&timestamp=gte.2026-04-07T10%3A48%3A47%2B00%3A00&timestamp=lte.2026-04-07%2012%3A25%3A12&order=timestamp.asc "HTTP/2 200 OK"
+2026-04-07 19:25:13 INFO     httpx            HTTP Request: POST https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_prices?on_conflict=timestamp&columns=%22timestamp%22%2C%22volume%22%2C%22close%22%2C%22open%22%2C%22high%22%2C%22low%22%2C%22source%22 "HTTP/2 201 Created"
+2026-04-07 19:26:13 INFO     httpx            HTTP Request: GET https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_signals?select=%2A&order_status=in.%28pending%2Copen%29&order=signal_time.asc "HTTP/2 200 OK"
+2026-04-07 19:26:13 INFO     httpx            HTTP Request: GET https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_prices?select=%2A&timestamp=gte.2026-04-07T10%3A48%3A47%2B00%3A00&timestamp=lte.2026-04-07%2012%3A26%3A13&order=timestamp.asc "HTTP/2 200 OK"
+2026-04-07 19:26:14 INFO     httpx            HTTP Request: POST https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_prices?on_conflict=timestamp&columns=%22timestamp%22%2C%22volume%22%2C%22close%22%2C%22open%22%2C%22high%22%2C%22low%22%2C%22source%22 "HTTP/2 201 Created"
+2026-04-07 19:27:13 INFO     httpx            HTTP Request: GET https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_signals?select=%2A&order_status=in.%28pending%2Copen%29&order=signal_time.asc "HTTP/2 200 OK"
+2026-04-07 19:27:13 INFO     httpx            HTTP Request: GET https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_prices?select=%2A&timestamp=gte.2026-04-07T10%3A48%3A47%2B00%3A00&timestamp=lte.2026-04-07%2012%3A27%3A13&order=timestamp.asc "HTTP/2 200 OK"
+2026-04-07 19:27:14 INFO     httpx            HTTP Request: POST https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_prices?on_conflict=timestamp&columns=%22timestamp%22%2C%22volume%22%2C%22close%22%2C%22open%22%2C%22high%22%2C%22low%22%2C%22source%22 "HTTP/2 201 Created"
+2026-04-07 19:28:14 INFO     httpx            HTTP Request: GET https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_signals?select=%2A&order_status=in.%28pending%2Copen%29&order=signal_time.asc "HTTP/2 200 OK"
+2026-04-07 19:28:14 INFO     httpx            HTTP Request: GET https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_prices?select=%2A&timestamp=gte.2026-04-07T10%3A48%3A47%2B00%3A00&timestamp=lte.2026-04-07%2012%3A28%3A14&order=timestamp.asc "HTTP/2 200 OK"
+2026-04-07 19:28:15 INFO     httpx            HTTP Request: POST https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_prices?on_conflict=timestamp&columns=%22timestamp%22%2C%22volume%22%2C%22close%22%2C%22open%22%2C%22high%22%2C%22low%22%2C%22source%22 "HTTP/2 201 Created"
+2026-04-07 19:28:24 INFO     telethon.network.mtprotosender Disconnecting from 91.108.56.174:443/TcpFull...
+2026-04-07 19:28:24 INFO     telethon.network.mtprotosender Disconnection from 91.108.56.174:443/TcpFull complete!
+2026-04-07 19:28:24 INFO     telethon.network.mtprotosender Connecting to 91.108.56.174:443/TcpFull...
+2026-04-07 19:28:24 INFO     telethon.network.mtprotosender Connection to 91.108.56.174:443/TcpFull complete!
+2026-04-07 19:28:24 ERROR    telegram_listener Telegram error: The authorization key (session file) was used under two different IP addresses simultaneously, and can no longer be used. Use the same session exclusively, or use different sessions (caused by InvokeWithLayerRequest(InitConnectionRequest(GetConfigRequest))) — retry in 300s
+2026-04-07 19:29:14 INFO     httpx            HTTP Request: GET https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_signals?select=%2A&order_status=in.%28pending%2Copen%29&order=signal_time.asc "HTTP/2 200 OK"
+2026-04-07 19:29:14 INFO     httpx            HTTP Request: GET https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_prices?select=%2A&timestamp=gte.2026-04-07T10%3A48%3A47%2B00%3A00&timestamp=lte.2026-04-07%2012%3A29%3A14&order=timestamp.asc "HTTP/2 200 OK"
+2026-04-07 19:29:15 INFO     httpx            HTTP Request: POST https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_prices?on_conflict=timestamp&columns=%22timestamp%22%2C%22volume%22%2C%22close%22%2C%22open%22%2C%22high%22%2C%22low%22%2C%22source%22 "HTTP/2 201 Created"
+2026-04-07 19:30:15 INFO     httpx            HTTP Request: GET https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_signals?select=%2A&order_status=in.%28pending%2Copen%29&order=signal_time.asc "HTTP/2 200 OK"
+2026-04-07 19:30:15 INFO     httpx            HTTP Request: GET https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_prices?select=%2A&timestamp=gte.2026-04-07T10%3A48%3A47%2B00%3A00&timestamp=lte.2026-04-07%2012%3A30%3A15&order=timestamp.asc "HTTP/2 200 OK"
+2026-04-07 19:30:16 INFO     httpx            HTTP Request: POST https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_prices?on_conflict=timestamp&columns=%22timestamp%22%2C%22volume%22%2C%22close%22%2C%22open%22%2C%22high%22%2C%22low%22%2C%22source%22 "HTTP/2 201 Created"
+2026-04-07 19:31:15 INFO     httpx            HTTP Request: GET https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_signals?select=%2A&order_status=in.%28pending%2Copen%29&order=signal_time.asc "HTTP/2 200 OK"
+2026-04-07 19:31:15 INFO     httpx            HTTP Request: GET https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_prices?select=%2A&timestamp=gte.2026-04-07T10%3A48%3A47%2B00%3A00&timestamp=lte.2026-04-07%2012%3A31%3A15&order=timestamp.asc "HTTP/2 200 OK"
+2026-04-07 19:31:16 INFO     httpx            HTTP Request: POST https://ckxbcvqgenttfecfkpjy.supabase.co/rest/v1/gold_prices?on_conflict=timestamp&columns=%22timestamp%22%2C%22volume%22%2C%22close%22%2C%22open%22%2C%22high%22%2C%22low%22%2C%22source%22 "HTTP/2 201 Created"
+2026-04-07 19:31:33 INFO     main             Shutting down...
+2026-04-07 19:31:33 INFO     telethon.network.mtprotosender Disconnecting from 91.108.56.174:443/TcpFull...
+2026-04-07 19:31:33 INFO     telethon.network.mtprotosender Disconnecting from 91.108.56.174:443/TcpFull...
+2026-04-07 19:31:33 INFO     telethon.network.mtprotosender Disconnection from 91.108.56.174:443/TcpFull complete!
+2026-04-07 19:31:33 INFO     telethon.network.mtprotosender Disconnection from None complete!

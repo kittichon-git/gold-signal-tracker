@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 const CHANNEL_NAMES = {
   'Channel trades': 'EMpire',
   'trades': 'EMpire',
+  '-1001680297592': 'EMpire',
 }
 const displayChannel = (name) => CHANNEL_NAMES[name] || name
 
